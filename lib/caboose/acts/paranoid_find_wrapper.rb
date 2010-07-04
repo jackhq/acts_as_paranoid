@@ -50,6 +50,8 @@ module Caboose #:nodoc:
 
       module ClassMethods
         def acts_as_paranoid_with_find_wrapper(options = {})
+          include InstanceMethods
+
           unless paranoid? # don't let AR call this twice
             acts_as_paranoid_without_find_wrapper(options)
             class << self
@@ -57,7 +59,6 @@ module Caboose #:nodoc:
               alias_method :validate_find_options_without_find_wrapper, :validate_find_options
             end
           end
-          include InstanceMethods
         end
       end
 
