@@ -70,15 +70,15 @@ module Caboose #:nodoc:
         module ClassMethods
           # This is a wrapper for the regular "find" so you can pass acts_as_paranoid related
           # options and determine which finder to call.
-          def find(*args)
-            options = args.extract_options!
-            # Determine who to call.
-            finder_option = VALID_PARANOID_FIND_OPTIONS.detect { |key| options.delete(key) } || :without_find_wrapper
-            finder_method = "find_#{finder_option}".to_sym
-            # Put back the options in the args now that they don't include the extended keys.
-            args << options
-            send(finder_method, *args)
-          end
+          # def find(*args)
+          #   options = args.extract_options!
+          #   # Determine who to call.
+          #   finder_option = VALID_PARANOID_FIND_OPTIONS.detect { |key| options.delete(key) } || :without_find_wrapper
+          #   finder_method = "find_#{finder_option}".to_sym
+          #   # Put back the options in the args now that they don't include the extended keys.
+          #   args << options
+          #   send(finder_method, *args)
+          # end
 
           protected
 
